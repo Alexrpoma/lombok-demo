@@ -1,4 +1,4 @@
-package com.lombok.demo.with_lombok.pojo;
+package com.lombok.demo.without_lombok.pojo;
 
 public class App {
   public static void main(String[] args) {
