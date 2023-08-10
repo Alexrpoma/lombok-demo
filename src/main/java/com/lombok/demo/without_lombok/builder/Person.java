@@ -1,10 +1,27 @@
 package com.lombok.demo.without_lombok.builder;
 
 public class Person {
-  private String name;
-  private String username;
-  private String email;
-  private int age;
+  private final String name;
+  private final String username;
+  private final String email;
+  private final int age;
+
+  private Person(String name, String username, String email, int age) {
+    this.name = name;
+    this.username = username;
+    this.email = email;
+    this.age = age;
+  }
+
+  @Override
+  public String toString() {
+    return "Person{" +
+        "name='" + name + '\'' +
+        ", username='" + username + '\'' +
+        ", email='" + email + '\'' +
+        ", age=" + age +
+        '}';
+  }
 
   static class builder {
     private String name;
@@ -12,24 +29,28 @@ public class Person {
     private String email;
     private int age;
 
-    public String name(String name) {
+    public builder name(String name) {
       this.name = name;
-      return name;
+      return this;
     }
 
-    public String username(String username) {
+    public builder username(String username) {
       this.username = username;
-      return username;
+      return this;
     }
 
-    public String email(String email) {
+    public builder email(String email) {
       this.email = email;
-      return email;
+      return this;
     }
 
-    public int age(int age) {
+    public builder age(int age) {
       this.age = age;
-      return age;
+      return this;
+    }
+
+    public Person build() {
+      return new Person(this.name, this.username, this.email, this.age);
     }
 
   }
